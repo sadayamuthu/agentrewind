@@ -1,4 +1,22 @@
-# rewind
+<div align="center">
+
+# Rewind
+
+<h3>An undo log for AI agents</h3>
+
+[![Status](https://img.shields.io/badge/status-design%20stage-orange?style=flat-square)](ROADMAP.md)
+[![Go 1.26+](https://img.shields.io/badge/go-1.26+-00ADD8?style=flat-square)](https://go.dev/dl/)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square)](LICENSE)
+
+---
+
+[How it works](#how-it-works) · [Thesis](THESIS.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+
+</div>
+
+---
+
+## What is Rewind?
 
 An undo log for AI agents. For every action an agent takes, `rewind` records
 the action that would undo it (create a bucket and delete the bucket, post a
@@ -11,6 +29,8 @@ and SaaS tools, newest action first.
 > [OpenAstra](https://openastra.org) research agenda, area X: AI Resilience &
 > Recovery.
 
+---
+
 ## The problem
 
 When an agent goes wrong, the cleanup is manual: someone reads the transcript,
@@ -19,6 +39,8 @@ systems. Some actions can't be undone at all, and nobody knew that until after
 they ran. Distributed systems solved a version of this decades ago with the
 saga pattern (Garcia-Molina and Salem, 1987): every step in a long
 transaction has a compensating step. Agents need the same thing.
+
+---
 
 ## How it works
 
@@ -33,6 +55,8 @@ transaction has a compensating step. Agents need the same thing.
    email). Irreversible actions can require approval *before* they run.
 4. **Roll back.** `rewind <session>` runs compensations newest first, checks
    each one worked, and stops and reports if one fails.
+
+---
 
 ## Example (proposed)
 
@@ -49,12 +73,16 @@ session-42  agent: release-bot  23 actions  2026-11-16 09:12-09:31
 22 of 23 actions can be undone. Run `rewind apply session-42` to proceed.
 ```
 
+---
+
 ## The compensation catalog
 
 A machine-readable catalog of actions and their compensations for common APIs
 (filesystem, git, GitHub, AWS, GCP, Azure, Slack, Jira, Stripe), versioned
 and open to contributions. Each entry lists what must be recorded at call time
 for the undo to work.
+
+---
 
 ## Planned surfaces
 
@@ -63,6 +91,8 @@ for the undo to work.
 - Compensation catalog as JSON, published like OCBC and OEBC
 - Pre-execution approval hook for irreversible actions
 
+---
+
 ## Maps to
 
 | Framework | Items |
@@ -70,23 +100,27 @@ for the undo to work.
 | OWASP Agentic Top 10 | Tool misuse, cascading failures |
 | NIST SP 800-53 Rev. 5 | CP-10 System Recovery and Reconstitution, IR-4 Incident Handling, CM-3 Configuration Change Control |
 
+---
+
 ## Design principles
 
 - **Know before you act.** Reversibility is decided before a call runs, not after.
 - **Verify every undo.** A compensation isn't done until its effect is checked.
 - **Stop on failure.** Never keep rolling back past a step that failed.
 
+---
+
 ## Roadmap
 
-1. Action log format and the filesystem and git compensations
-2. MCP proxy recorder
-3. Compensation catalog v0 (GitHub, Slack, AWS core services)
-4. `plan` and `apply` with verification
-5. Pre-execution approval for irreversible actions
+The plan, from the first working version to 1.0, is in [ROADMAP.md](ROADMAP.md). The reasoning behind the project, and what would make us stop, is in [THESIS.md](THESIS.md).
+
+---
 
 ## Built on switchyard
 
 `rewind` will be a Go binary built on [switchyard](https://github.com/sadayamuthu/switchyard), OpenAstra's shared MCP proxy core: the recorder is a switchyard hook that logs each call and the data needed to undo it. It stacks with the other switchyard tools by chaining (`agent → fuse → intentlock → taintline → rewind → MCP server`).
+
+---
 
 ## Related OpenAstra projects
 
@@ -94,6 +128,32 @@ for the undo to work.
 - [Fuse](https://github.com/sadayamuthu/fuse): stops the agent; Rewind cleans up after it
 - [AgentRisk](https://github.com/sadayamuthu/agentrisk): uses reversibility in its score
 
+---
+
+## Contributing
+
+Design feedback, real-world cases and fixes are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to help while the project is at the design stage, and [GOVERNANCE.md](GOVERNANCE.md) for how decisions are made.
+
+---
+
+## Security
+
+Please report vulnerabilities privately through [GitHub security advisories](https://github.com/sadayamuthu/rewind/security/advisories/new), not in a public issue. See [SECURITY.md](SECURITY.md) for what to include and what's in scope.
+
+---
+
 ## License
 
-To be decided before the first release.
+[Apache License 2.0](LICENSE)
+
+---
+
+<div align="center">
+
+**Rewind: an undo log for AI agents**
+
+Rewind is managed by [OpenAstra](https://openastra.org)
+
+[GitHub](https://github.com/sadayamuthu/rewind) · [Thesis](THESIS.md) · [Roadmap](ROADMAP.md)
+
+</div>

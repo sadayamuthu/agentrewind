@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+type: software
+title: "Rewind: An undo log for AI agents"
+abstract: >-
+  Rewind records, for every action an AI agent takes, the action that would
+  undo it, classifies actions as reversible, compensable or irreversible
+  before they run, and rolls back whole agent sessions across the filesystem,
+  git, cloud APIs and SaaS tools.
+authors:
+  - family-names: Sadayamuthu
+    given-names: Karthikeyan
+    orcid: "https://orcid.org/0009-0008-3539-6048"
+license: Apache-2.0
+repository-code: "https://github.com/sadayamuthu/rewind"
+url: "https://openastra.org"
+keywords:
+  - AI agents
+  - rollback
+  - saga pattern
+  - incident response
+  - MCP
