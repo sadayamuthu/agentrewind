@@ -84,6 +84,10 @@ for the undo to work.
 4. `plan` and `apply` with verification
 5. Pre-execution approval for irreversible actions
 
+## Built on switchyard
+
+`rewind` will be a Go binary built on [switchyard](https://github.com/sadayamuthu/switchyard), OpenAstra's shared MCP proxy core: the recorder is a switchyard hook that logs each call and the data needed to undo it. It stacks with the other switchyard tools by chaining (`agent → fuse → intentlock → taintline → rewind → MCP server`).
+
 ## Related OpenAstra projects
 
 - [Unasked](https://github.com/sadayamuthu/unasked): exact, verified undo for code edits; Rewind extends that to every system
