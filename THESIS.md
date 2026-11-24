@@ -1,4 +1,4 @@
-# Rewind: thesis
+# AgentRewind: thesis
 
 **In one line:** if every agent action records its compensating action at
 call time, cleaning up after an agent becomes one command instead of an
@@ -49,7 +49,7 @@ OpenAstra projects.
 
 ## Not a bet on
 
-Stopping agents (Fuse) or sandboxing calls before they run (Airlock).
+Stopping agents (AgentFuse) or sandboxing calls before they run (AgentBox).
 
 ## Where it fits
 

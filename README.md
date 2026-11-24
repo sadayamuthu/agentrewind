@@ -1,6 +1,6 @@
 <div align="center">
 
-# Rewind
+# AgentRewind
 
 <h3>An undo log for AI agents</h3>
 
@@ -16,9 +16,9 @@
 
 ---
 
-## What is Rewind?
+## What is AgentRewind?
 
-An undo log for AI agents. For every action an agent takes, `rewind` records
+An undo log for AI agents. For every action an agent takes, `agentrewind` records
 the action that would undo it (create a bucket and delete the bucket, post a
 message and delete the message, push a commit and revert it). One command
 then rolls back a whole agent session across the filesystem, git, cloud APIs
@@ -44,7 +44,7 @@ transaction has a compensating step. Agents need the same thing.
 
 ## How it works
 
-1. **Record.** `rewind` wraps the agent's tools (as an MCP proxy or a library)
+1. **Record.** `agentrewind` wraps the agent's tools (as an MCP proxy or a library)
    and logs each call with what it needs to reverse it: IDs it created,
    previous values it overwrote, snapshots of files it changed.
 2. **Compensate.** An open catalog maps each action to its compensating
@@ -53,7 +53,7 @@ transaction has a compensating step. Agents need the same thing.
 3. **Classify up front.** Actions are marked `reversible`, `compensable`
    (can be offset but not erased, like a refund) or `irreversible` (a sent
    email). Irreversible actions can require approval *before* they run.
-4. **Roll back.** `rewind <session>` runs compensations newest first, checks
+4. **Roll back.** `agentrewind <session>` runs compensations newest first, checks
    each one worked, and stops and reports if one fails.
 
 ---
@@ -61,7 +61,7 @@ transaction has a compensating step. Agents need the same thing.
 ## Example (proposed)
 
 ```console
-$ rewind plan session-42
+$ agentrewind plan session-42
 session-42  agent: release-bot  23 actions  2026-11-16 09:12-09:31
 
  23  git.push origin release/2.4        -> git revert (3 commits)      reversible
@@ -70,7 +70,7 @@ session-42  agent: release-bot  23 actions  2026-11-16 09:12-09:31
   9  stripe.refund ch_3Q...             -> none                        IRREVERSIBLE (was approved)
   1  fs.write CHANGELOG.md              -> restore snapshot            reversible
 
-22 of 23 actions can be undone. Run `rewind apply session-42` to proceed.
+22 of 23 actions can be undone. Run `agentrewind apply session-42` to proceed.
 ```
 
 ---
@@ -87,7 +87,7 @@ for the undo to work.
 ## Planned surfaces
 
 - MCP proxy and Python/TypeScript libraries that record calls
-- CLI: `rewind log`, `rewind plan`, `rewind apply`
+- CLI: `agentrewind log`, `agentrewind plan`, `agentrewind apply`
 - Compensation catalog as JSON, published like OCBC and OEBC
 - Pre-execution approval hook for irreversible actions
 
@@ -118,14 +118,14 @@ The plan, from the first working version to 1.0, is in [ROADMAP.md](ROADMAP.md).
 
 ## Built on switchyard
 
-`rewind` will be a Go binary built on [switchyard](https://github.com/sadayamuthu/switchyard), OpenAstra's shared MCP proxy core: the recorder is a switchyard hook that logs each call and the data needed to undo it. It stacks with the other switchyard tools by chaining (`agent → fuse → intentlock → taintline → rewind → MCP server`).
+`agentrewind` will be a Go binary built on [switchyard](https://github.com/sadayamuthu/switchyard), OpenAstra's shared MCP proxy core: the recorder is a switchyard hook that logs each call and the data needed to undo it. It stacks with the other switchyard tools by chaining (`agent → agentfuse → agentlock → agenttaint → agentrewind → MCP server`).
 
 ---
 
 ## Related OpenAstra projects
 
-- [Unasked](https://github.com/sadayamuthu/unasked): exact, verified undo for code edits; Rewind extends that to every system
-- [Fuse](https://github.com/sadayamuthu/fuse): stops the agent; Rewind cleans up after it
+- [Unasked](https://github.com/sadayamuthu/unasked): exact, verified undo for code edits; AgentRewind extends that to every system
+- [AgentFuse](https://github.com/sadayamuthu/agentfuse): stops the agent; AgentRewind cleans up after it
 - [AgentRisk](https://github.com/sadayamuthu/agentrisk): uses reversibility in its score
 
 ---
@@ -138,7 +138,7 @@ Design feedback, real-world cases and fixes are welcome. See [CONTRIBUTING.md](C
 
 ## Security
 
-Please report vulnerabilities privately through [GitHub security advisories](https://github.com/sadayamuthu/rewind/security/advisories/new), not in a public issue. See [SECURITY.md](SECURITY.md) for what to include and what's in scope.
+Please report vulnerabilities privately through [GitHub security advisories](https://github.com/sadayamuthu/agentrewind/security/advisories/new), not in a public issue. See [SECURITY.md](SECURITY.md) for what to include and what's in scope.
 
 ---
 
@@ -150,10 +150,10 @@ Please report vulnerabilities privately through [GitHub security advisories](htt
 
 <div align="center">
 
-**Rewind: an undo log for AI agents**
+**AgentRewind: an undo log for AI agents**
 
-Rewind is managed by [OpenAstra](https://openastra.org)
+AgentRewind is managed by [OpenAstra](https://openastra.org)
 
-[GitHub](https://github.com/sadayamuthu/rewind) · [Thesis](THESIS.md) · [Roadmap](ROADMAP.md)
+[GitHub](https://github.com/sadayamuthu/agentrewind) · [Thesis](THESIS.md) · [Roadmap](ROADMAP.md)
 
 </div>

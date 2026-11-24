@@ -1,6 +1,6 @@
-# Rewind Governance
+# AgentRewind Governance
 
-This document says who makes decisions about Rewind, how they are made,
+This document says who makes decisions about AgentRewind, how they are made,
 and how contributors become maintainers. It follows the shape of the
 [Minimum Viable Governance](https://github.com/github/MVG) template, scaled to
 the project's current size. It is shared, with only names and project-specific
@@ -8,14 +8,14 @@ lists changed, across the [OpenAstra](https://openastra.org) projects.
 
 ## Current state
 
-Rewind is a design-stage project with one maintainer (see
+AgentRewind is a design-stage project with one maintainer (see
 [MAINTAINERS.md](MAINTAINERS.md)). That is a risk, and growing past it is
 the first goal of this document: the roles and processes below are written
 so that new maintainers can join without changing the rules.
 
 ## Roles
 
-**Users** use Rewind and report what works and what doesn't. Issues,
+**Users** use AgentRewind and report what works and what doesn't. Issues,
 discussions and real-world feedback are contributions. While the project is
 at the design stage, feedback on the design is the most valuable kind.
 

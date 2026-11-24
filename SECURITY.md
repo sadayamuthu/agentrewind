@@ -4,14 +4,14 @@
 
 Please don't report security problems in a public issue, pull request or
 discussion. Use
-[**Report a vulnerability**](https://github.com/sadayamuthu/rewind/security/advisories/new)
+[**Report a vulnerability**](https://github.com/sadayamuthu/agentrewind/security/advisories/new)
 on the repository's Security tab instead. Only the maintainers can see the
 report.
 
 Include what you can of:
 
-- the Rewind version (`rewind version`) or commit, your Go version and OS
-- how Rewind was used, and its configuration with secrets removed
+- the AgentRewind version (`agentrewind version`) or commit, your Go version and OS
+- how AgentRewind was used, and its configuration with secrets removed
 - steps to reproduce
 - what happened and what you expected
 
@@ -21,14 +21,14 @@ rather it didn't.
 
 ## Supported versions
 
-Rewind is at the design stage and has no releases yet. Once it does,
+AgentRewind is at the design stage and has no releases yet. Once it does,
 fixes land in the latest release only, until 1.0.
 
 ## What counts
 
-Rewind records an agent's tool calls with the data needed to undo them, and `rewind apply` runs compensating actions with the credentials you configure.
+AgentRewind records an agent's tool calls with the data needed to undo them, and `agentrewind apply` runs compensating actions with the credentials you configure.
 
-Rewind is a security tool, so anything that breaks one of these promises
+AgentRewind is a security tool, so anything that breaks one of these promises
 is a security issue:
 
 - **Rollback stops on failure.** A rollback that continues past a failed or unverified compensation is in scope.
@@ -37,8 +37,8 @@ is a security issue:
 
 These are by design, and not vulnerabilities:
 
-- Some actions can only be offset, not erased (a refund, a sent email). Rewind tells you which.
-- A compensation can conflict with changes others made since; `rewind plan` shows what will run.
+- Some actions can only be offset, not erased (a refund, a sent email). AgentRewind tells you which.
+- A compensation can conflict with changes others made since; `agentrewind plan` shows what will run.
 
 A wrong result that isn't covered above is a bug, not a vulnerability. Report
 it in a normal issue; see [CONTRIBUTING.md](CONTRIBUTING.md).

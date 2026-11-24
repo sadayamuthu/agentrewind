@@ -1,8 +1,8 @@
-# Contributing to Rewind
+# Contributing to AgentRewind
 
-Thanks for helping. Rewind records, for every action an AI agent takes, the action that would undo it, classifies actions as reversible, compensable or irreversible before they run, and rolls back whole agent sessions across the filesystem, git, cloud APIs and SaaS tools.
+Thanks for helping. AgentRewind records, for every action an AI agent takes, the action that would undo it, classifies actions as reversible, compensable or irreversible before they run, and rolls back whole agent sessions across the filesystem, git, cloud APIs and SaaS tools.
 
-Rewind is at the **design stage**: the README and
+AgentRewind is at the **design stage**: the README and
 [THESIS.md](THESIS.md) describe what it will do, and there is little or no
 code yet. Right now the most useful contributions are on the design itself.
 
@@ -22,8 +22,8 @@ code yet. Right now the most useful contributions are on the design itself.
   work on tells us more than any feature request.
 - **Pick up an area** from the "Wanted" list in
   [MAINTAINERS.md](MAINTAINERS.md), or an issue labelled
-  [`good first issue`](https://github.com/sadayamuthu/rewind/labels/good%20first%20issue)
-  or [`help wanted`](https://github.com/sadayamuthu/rewind/labels/help%20wanted).
+  [`good first issue`](https://github.com/sadayamuthu/agentrewind/labels/good%20first%20issue)
+  or [`help wanted`](https://github.com/sadayamuthu/agentrewind/labels/help%20wanted).
 
 For anything larger than a small fix, open an issue first so we can agree on
 the approach before you write the code.
@@ -42,11 +42,11 @@ still show the problem. Never paste credentials.
 
 ## Development setup
 
-Rewind is written in **Go 1.26** or newer, like every new OpenAstra tool.
+AgentRewind is written in **Go 1.26** or newer, like every new OpenAstra tool.
 
 ```sh
-git clone https://github.com/sadayamuthu/rewind.git
-cd rewind
+git clone https://github.com/sadayamuthu/agentrewind.git
+cd agentrewind
 go build ./...
 ```
 
@@ -75,12 +75,12 @@ before your change and passes after it.
 ## Security
 
 Please don't report security problems in a public issue. Use
-[**Report a vulnerability**](https://github.com/sadayamuthu/rewind/security/advisories/new)
+[**Report a vulnerability**](https://github.com/sadayamuthu/agentrewind/security/advisories/new)
 on the repository's Security tab instead. See [SECURITY.md](SECURITY.md) for
 what to include and what's in scope.
 
 ## License
 
-Rewind is licensed under the [Apache License 2.0](LICENSE). By
+AgentRewind is licensed under the [Apache License 2.0](LICENSE). By
 contributing, you agree that your contributions are licensed under the same
 license.

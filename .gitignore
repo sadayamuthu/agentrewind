@@ -1,5 +1,5 @@
 # Binaries and build output
-/rewind
+/agentrewind
 /dist/
 /bin/
 *.exe
